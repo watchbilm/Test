@@ -44,7 +44,7 @@
 
   <!-- Load shared navbar HTML + CSS + JS dynamically like search.html -->
   <script>
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     fetch(`${basePrefix}/shared/navbar.html`)
       .then(res => res.text())
       .then(html => {

@@ -131,7 +131,7 @@
   </main>
 
   <script>
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     fetch(`${basePrefix}/shared/navbar.html`)
       .then(res => res.text())
       .then(html => {
@@ -149,7 +149,7 @@
     const TMDB_API_KEY = '3ade810499876bb5672f40e54960e6a2';
     const OMDB_API_KEY = '9bf8cd26';
     // Canonical production base URL for the rebranded site
-    const _prefix = '/cinenova';
+    const _prefix = '/Test';
     const BASE_URL = `${location.origin}${_prefix}`;
 
     const urlParams = new URLSearchParams(window.location.search);

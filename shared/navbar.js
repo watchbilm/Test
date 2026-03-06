@@ -4,10 +4,10 @@
 
   const shadow = container.attachShadow({ mode: 'open' });
 
-  // After rebrand the site is expected to be hosted at /cinenova/.
+  // After rebrand the site is expected to be hosted at /Test/.
   // Use the canonical base for links and asset loads.
   const pathParts = location.pathname.split('/').filter(Boolean);
-  const basePrefix = '/cinenova';
+  const basePrefix = '/Test';
 
   // Migrate legacy localStorage keys from 'bilm-*' to 'cinenova-*' to preserve user progress after rebrand.
   try {

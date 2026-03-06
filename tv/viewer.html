@@ -271,7 +271,7 @@
 </main>
 
   <script>
-  const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+  const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
   fetch(`${basePrefix}/shared/navbar.html`)
      .then(res => res.text())
     .then(html => {
@@ -459,7 +459,7 @@
   }
 
   async function checkOnSiteTvPaths() {
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     const candidates = [];
     if (tmdbId) {
       candidates.push(
@@ -556,7 +556,7 @@
     if (!imdbId) return;
     saveProgress();
     if (currentServer === 'vidsrc') {
-      iframe.src = `https://vidsrc.xyz/embed/tv/${imdbId}/${currentSeason}-${currentEpisode}`;
+      iframe.src = `https://vidsrc-embed.ru/embed/tv/${imdbId}/${currentSeason}-${currentEpisode}`;
     } else if (currentServer === 'vidplay') {
       iframe.src = `https://vidplay.to/tv/${imdbId}/${currentSeason}/${currentEpisode}`;
     }
@@ -628,7 +628,7 @@
 <!-- 🔒 Load Shared Ad Blocker -->
 <script>
   (function(){
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     const s = document.createElement('script');
     s.src = `${basePrefix}/shared/adblock/adblock.js`;
     document.body.appendChild(s);
