@@ -277,7 +277,29 @@
   const playOnSiteBtn = document.getElementById('playOnSiteBtn');
   const playerStatus = document.getElementById('playerStatus');
 
-  function loadServer(server) {
+  let providerMovieId = null;
+  async function resolveProviderMovieId() {
+    if (providerMovieId) return providerMovieId;
+    if (!movieId) return null;
+    if (/^tt\d+$/.test(movieId)) {
+      providerMovieId = movieId;
+      return providerMovieId;
+    }
+    try {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/external_ids?api_key=3ade810499876bb5672f40e54960e6a2`);
+      if (res.ok) {
+        const data = await res.json();
+        providerMovieId = data.imdb_id || movieId;
+      } else {
+        providerMovieId = movieId;
+      }
+    } catch {
+      providerMovieId = movieId;
+    }
+    return providerMovieId;
+  }
+
+  async function loadServer(server) {
     if (!movieId) {
       console.error('No movie ID provided.');
       playerStatus.textContent = 'No movie id provided — open movie from the list or append ?id=... in URL.';
@@ -285,10 +307,12 @@
       return;
     }
 
+    const providerMovieId = await resolveProviderMovieId();
+
     let url = '';
     switch (server) {
       case 'vidsrc':
-        url = `https://vidsrc.xyz/embed/movie/${movieId}`;
+        url = `https://vidsrc-embed.ru/embed/movie/${providerMovieId}`;
         break;
       case 'vidplay':
         url = `https://vidplay.to/movie/${movieId}`;
@@ -358,7 +382,7 @@
   }
 
   async function checkOnSitePaths() {
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     // We try relative to the site root or /cinenova if deployed there
     const candidates = [
       `${basePrefix}/media/movie/${movieId}/master.m3u8`,
@@ -539,7 +563,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     fetch(`${basePrefix}/shared/navbar.html`)
       .then(res => res.text())
       .then(html => {
@@ -558,7 +582,7 @@
 <script>
   // Dynamically load adblock script using the same basePrefix used above
   (function(){
-    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'cinenova') ? '/cinenova' : '';
+    const basePrefix = (location.pathname.split('/').filter(Boolean)[0] === 'Test') ? '/Test' : '';
     const s = document.createElement('script');
     s.src = `${basePrefix}/shared/adblock/adblock.js`;
     document.body.appendChild(s);

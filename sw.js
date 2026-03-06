@@ -1,9 +1,9 @@
-const cacheName = 'cinenova-cache-v1';  // Cache version name — change this to update cache
+const cacheName = 'test-cache-v2';  // Cache version name — change this to update cache
 const filesToCache = [
-  '/',                // Cache root page
-  '/index.html',      // Cache main HTML page (adjust path if needed)
-  '/manifest.json',   // Cache manifest file
-  '/icon.png',        // Cache your app icon
+  '/Test/',           // Cache root page for GitHub Pages repo site
+  '/Test/index.html', // Cache main HTML page
+  '/Test/manifest.json',
+  '/Test/icon.png',
   // Add here any other static assets you want cached (CSS, JS, images, etc.)
 ];
 
